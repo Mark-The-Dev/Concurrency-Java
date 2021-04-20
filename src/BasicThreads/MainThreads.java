@@ -9,8 +9,9 @@ public class MainThreads {
         System.out.println(ANSI_PURPLE + "Hello from the main thread!");
 
         Thread anotherThread = new AnotherThread();
+        anotherThread.setName("== Another Thread ==");
 
-        // can only start this instance once!
+        // can only start each instance once!
         anotherThread.start();
 
 
@@ -20,6 +21,9 @@ public class MainThreads {
                 System.out.println(ANSI_GREEN +"Hello from a anonymous thread! ");
             }
         }.start();
+
+        Thread myRunnableThread = new Thread(new MyRunnable());
+        myRunnableThread.start();
 
         // this might hit before anotherThread.
         System.out.println(ANSI_PURPLE + "Hello again from the main thread.");
