@@ -49,6 +49,7 @@ static class CountDown {
 
         // causes interference when synchronized off of a local variable color
         // can synchronize off this to allow each object to be locked to a specific thread at a time.
+        // Can prevent race conditions by synchronizing critical pieces of code.
         synchronized (this){
             for (i = 10; i> 0; i--){
                 // Thread could be suspended within print line!
