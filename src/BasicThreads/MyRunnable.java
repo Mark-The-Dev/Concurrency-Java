@@ -1,6 +1,6 @@
 package BasicThreads;
 
-import static BasicThreads.ThreadColor.ANSI_RED;
+import static ThreadColor.ANSI_RED;
 
 public class MyRunnable implements Runnable {
 
