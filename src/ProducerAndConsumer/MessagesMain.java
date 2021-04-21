@@ -6,8 +6,7 @@ public class MessagesMain {
         Message message = new Message();
         (new Thread(new Writer(message))).start();
         (new Thread(new Reader(message))).start();
-
-
+        
 
     }
 }
