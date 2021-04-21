@@ -1,52 +1,44 @@
 package BasicThreadPool;
 
-import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import static ProducerConsumer.PCMain.EOF;
 
 public class MyConsumerTP implements Runnable {
-    private List<String> buffer;
+    private ArrayBlockingQueue<String> buffer;
     private String color;
-    private ReentrantLock bufferLock;
 
-    public MyConsumerTP(List<String> buffer, String color, ReentrantLock bufferlock) {
+
+    public MyConsumerTP(ArrayBlockingQueue<String> buffer, String color) {
         this.buffer = buffer;
         this.color = color;
-        this.bufferLock = bufferlock;
+
     }
 
 
     public void run() {
 
-        // counter to see how often tryLock is false.
-        int counter = 0;
-
-        while (true){
-            // uses try lock -- not needed here but good for learning!
-            // could also use lock + try finally, both ways allow the entire sequence to be synchronized with locks!
-            if (bufferLock.tryLock()){
+        while (true) {
+            // Even though ArrayBlockingQueue is thread safe synchronized is needed to prevent null peek.
+            synchronized (buffer){
                 try {
-                    if(buffer.isEmpty()){
+                    if (buffer.isEmpty()) {
                         continue;
                     }
-                    // adds only if buffer is not empty, then resets.
-                    System.out.println(color +"The counter = "+ counter);
-                    counter = 0;
 
-                    if(buffer.get(0).equals(EOF)){
+                    if (buffer.peek().equals(EOF)) {
                         System.out.println(color + "Exiting");
                         break;
                     } else {
-                        System.out.println(color + "Removed " + buffer.remove(0));
+                        System.out.println(color + "Removed " + buffer.take());
                     }
-                } finally {
-                    bufferLock.unlock();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            } else {
-                counter++;
+
             }
 
         }
+
     }
 }

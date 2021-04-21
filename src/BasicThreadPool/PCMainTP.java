@@ -14,14 +14,14 @@ public class PCMainTP {
 
     public static void main(String[] args) {
 
-        List<String> buffer = new ArrayList<>();
+        ArrayBlockingQueue<String> buffer = new ArrayBlockingQueue<String>(6);
         ReentrantLock bufferLock = new ReentrantLock();
 
         ExecutorService executorService = Executors.newFixedThreadPool(3);
 
-        MyProducerTP producer = new MyProducerTP(buffer, ANSI_YELLOW, bufferLock);
-        MyConsumerTP consumer1 = new MyConsumerTP(buffer, ANSI_PURPLE, bufferLock);
-        MyConsumerTP consumer2 = new MyConsumerTP(buffer, ANSI_CYAN, bufferLock);
+        MyProducerTP producer = new MyProducerTP(buffer, ANSI_YELLOW);
+        MyConsumerTP consumer1 = new MyConsumerTP(buffer, ANSI_PURPLE);
+        MyConsumerTP consumer2 = new MyConsumerTP(buffer, ANSI_CYAN);
 
         executorService.execute(producer);
         executorService.execute(consumer1);
