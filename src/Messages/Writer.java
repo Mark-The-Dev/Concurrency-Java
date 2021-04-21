@@ -1,4 +1,4 @@
-package ProducerAndConsumer;
+package Messages;
 
 import java.util.Random;
 

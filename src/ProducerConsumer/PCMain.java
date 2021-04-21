@@ -22,8 +22,6 @@ public class PCMain {
         new Thread(consumer2).start();
 
 
-
-
     }
 
 }

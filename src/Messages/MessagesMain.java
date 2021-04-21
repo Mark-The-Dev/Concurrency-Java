@@ -1,4 +1,4 @@
-package ProducerAndConsumer;
+package Messages;
 
 public class MessagesMain {
     public static void main(String[] args) {

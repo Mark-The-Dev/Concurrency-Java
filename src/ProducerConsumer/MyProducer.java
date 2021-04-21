@@ -3,6 +3,8 @@ package ProducerConsumer;
 import java.util.List;
 import java.util.Random;
 
+import static BasicThreads.ThreadColor.ANSI_RESET;
+
 public class MyProducer implements Runnable {
     private List<String> buffer;
     private String color;
@@ -18,8 +20,12 @@ public class MyProducer implements Runnable {
 
         for (String num: nums){
             try {
-                System.out.println("Adding..." + num);
-                buffer.add(num);
+                System.out.println(color +"Adding..." + num);
+
+                // synchronized buffer to prevent thread interference.
+                synchronized (buffer){
+                    buffer.add(num);
+                }
 
                 Thread.sleep(random.nextInt(1000));
             } catch (InterruptedException e){
@@ -27,8 +33,9 @@ public class MyProducer implements Runnable {
             }
         }
 
-        System.out.println("Adding EOF and exiting...");
-        buffer.add("EOF");
-
+        System.out.println(ANSI_RESET +"Adding EOF and exiting...");
+        synchronized (buffer) {
+            buffer.add("EOF");
+        }
     }
 }
