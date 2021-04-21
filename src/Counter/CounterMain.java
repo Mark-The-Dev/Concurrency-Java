@@ -1,6 +1,6 @@
 package Counter;
 
-import ThreadColor;
+import BasicThreads.ThreadColor;
 
 public class CounterMain {
     public static void main(String[] args) {

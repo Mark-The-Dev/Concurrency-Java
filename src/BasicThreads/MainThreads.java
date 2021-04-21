@@ -1,6 +1,6 @@
 package BasicThreads;
 
-import static ThreadColor.*;
+import static BasicThreads.ThreadColor.*;
 
 public class MainThreads {
 

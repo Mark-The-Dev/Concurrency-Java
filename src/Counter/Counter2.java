@@ -1,6 +1,6 @@
 package Counter;
 
-import ThreadColor;
+import BasicThreads.ThreadColor;
 
 public class Counter2 {
 
