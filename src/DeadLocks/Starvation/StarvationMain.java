@@ -1,10 +1,22 @@
 package DeadLocks.Starvation;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 import static BasicThreads.ThreadColor.*;
 
 public class StarvationMain {
 
-    private static Object lock = new Object();
+    // setting reentrant lock to true means it's a fair lock. (first come, first serve lock)
+    // fair locks means it's only fairness in acquiring the lock, not in thread scheduling.
+    // -- lock may execute a task that takes a long time
+    // -- only guarantee's first come first serve for acquiring the lock
+    // -- try lock method does not honor the fair lock setting (will not be first come first serve.)
+    // -- fair locks used with a lot of threads will performance will be impacted (needs an extra layer of processing to determine)
+
+
+    // Starvation may not always be the worst thing to happen, depends on what the program requires, could be more ideal than fair locking if its processed faster.
+    
+    private static ReentrantLock lock = new ReentrantLock(true);
 
     public static void main(String[] args) {
 
@@ -39,12 +51,17 @@ public class StarvationMain {
         @Override
         public void run() {
             for (int i =0; i < 100; i++){
-                synchronized (lock){
+
+                // Thread compete more fairly, starvation is removed with lock vs synchronized block.
+                lock.lock();
+                try{
                     System.out.format(threadColor + "%s: runCount = %d\n" , Thread.currentThread().getName(), runCount++);
                     // execute critical section of code.
 
-
+                } finally {
+                    lock.unlock();
                 }
+
 
 
             }
