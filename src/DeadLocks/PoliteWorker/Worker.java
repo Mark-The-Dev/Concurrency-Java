@@ -17,6 +17,8 @@ public class Worker {
         return active;
     }
 
+
+    // this will create a live lock where the threads are constantly live on the tasks.
     public synchronized void work(SharedResource sharedResource, Worker otherWorker){
 
         while (active){
