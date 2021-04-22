@@ -15,7 +15,7 @@ public class StarvationMain {
 
 
     // Starvation may not always be the worst thing to happen, depends on what the program requires, could be more ideal than fair locking if its processed faster.
-    
+
     private static ReentrantLock lock = new ReentrantLock(true);
 
     public static void main(String[] args) {
