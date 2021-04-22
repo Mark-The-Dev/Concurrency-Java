@@ -8,7 +8,7 @@ public class DeadLockMain {
     public static void main(String[] args) {
 
         // This creates a basic deadlock by using locks in opposite order (both get locked.)
-        
+
         new Thread1().start();
         new Thread2().start();
 
