@@ -1,0 +1,24 @@
+--Live locks:
+
+Occur when there are multiple threads locked into the task and creates an infinite loop.
+
+--Slipped conditions:
+
+Particular type of race condition where a a task executes erroneously on obsolete information.
+(
+IE:
+    Thread one checks that task1 is OK and not EOF.
+    Thread two checks that task1 is OK and is EOF and terminates.
+    Thread one tries to act on task but it is not longer valid and creates an error.
+)
+
+-- Atomic Action
+
+An action that can't be suspended in the middle of being executed. (all or nothing) (normal actions can be suspended.)
+
+examples of atomic actions:
+
+1. Reading and Writing reference variables.
+2. Reading and Writing primitive variables (except long and double because of 2 actions).
+3. Reading and writing all variables declared volatile. (still need to synchronize!)
+
