@@ -5,6 +5,8 @@ public class ChallengeOneAndTwo {
     public static void main(String[] args) {
         // Challenge 1, run two threads off the same account and withdraw and deposit on both.
 
+        // challenge 2, make the Bank Account safe with synchronize.
+
         BankAccount account = new BankAccount(1000.00, "12345-678");
 
         // can run as two anonymous threads
@@ -22,7 +24,7 @@ public class ChallengeOneAndTwo {
 //            }
         // };
 
-        // or as two runables
+        // or as two runnables
 
         Thread trThread1 = new Thread(new Runnable() {
             @Override

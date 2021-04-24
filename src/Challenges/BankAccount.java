@@ -9,12 +9,26 @@ public class BankAccount {
         this.accountNumber = accountNumber;
     }
 
+//    public synchronized void deposit(double amount){
+//        balance += amount;
+//    }
+//
+//    public synchronized void withdraw(double amount){
+//        balance -= amount;
+//    }
+
     public void deposit(double amount){
-        balance += amount;
+        synchronized (this){
+            balance += amount;
+        }
+
     }
 
     public void withdraw(double amount){
-        balance -= amount;
+        synchronized (this){
+            balance -= amount;
+        }
+
     }
 
     public double getBalance() {
