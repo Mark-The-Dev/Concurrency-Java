@@ -2,32 +2,14 @@ package Challenges;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ChallengeOneAndTwo {
+public class Chall3and4and5 {
 
     public static void main(String[] args) {
-        // Challenge 1, run two threads off the same account and withdraw and deposit on both.
-
-        // challenge 2, make the Bank Account safe with synchronize.
+        // challenge 4, use a reentrant lock for synchronization.
 
         ReentrantLock lock = new ReentrantLock();
         BankAccount account = new BankAccount(1000.00, "12345-678", lock);
 
-        // can run as two anonymous threads
-//        Thread trThread1 = new Thread(){
-//            public void run(){
-//                account.deposit(300.00);
-//                account.withdraw(50.00);
-//            }
-//        };
-//
-//        Thread trThread2 = new Thread(){
-//            public void run(){
-//                account.deposit(203.75);
-//                account.withdraw(100.00);
-//            }
-        // };
-
-        // or as two runnables
 
         Thread trThread1 = new Thread(new Runnable() {
             @Override
@@ -49,6 +31,6 @@ public class ChallengeOneAndTwo {
 
         trThread1.start();
         trThread2.start();
-
     }
+
 }
