@@ -36,7 +36,7 @@ class NewTutor {
 
         synchronized (this) {
             System.out.println("Tutor has arrived");
-            synchronized (student) {
+            
                 try {
                     // wait for student to arrive
                     this.wait();
@@ -45,7 +45,7 @@ class NewTutor {
                 }
                 student.startStudy();
                 System.out.println("Tutor is studying with student");
-            }
+
         }
     }
 
