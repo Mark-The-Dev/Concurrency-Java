@@ -7,6 +7,8 @@ public class Chall3and4and5 {
     public static void main(String[] args) {
         // challenge 4, use a reentrant lock for synchronization.
 
+        // challenge 5, use a trylock() to synchronize code.
+
         ReentrantLock lock = new ReentrantLock();
         BankAccount account = new BankAccount(1000.00, "12345-678", lock);
 
@@ -16,6 +18,7 @@ public class Chall3and4and5 {
             public void run() {
                 account.deposit(300.00);
                 account.withdraw(50.00);
+                
             }
         });
 
@@ -24,13 +27,14 @@ public class Chall3and4and5 {
             public void run() {
                 account.deposit(203.75);
                 account.withdraw(100.00);
-                System.out.println(account.getBalance());
+                account.printBalance();
             }
         });
 
 
         trThread1.start();
         trThread2.start();
+
     }
 
 }
